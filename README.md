@@ -1,1 +1,60 @@
 # listado_de_compras
+
+Manual de Usuario – App “Lista de Compras”
+
+Requisitos:
+
+Tener instalado Node.js
+Tener instalado Bun
+Tener un celular con la app Expo Go (Android o iOS)
+
+Instalación y ejecución:
+
+1- Abrir una terminal.
+2- Crear el proyecto:
+
+bunx create-expo-app@latest lista-compras
+cd lista-compras
+
+3- Iniciar la aplicación:
+
+bun start
+
+4- Se abrirá un código QR en la terminal o navegador.
+5- Abrir la app Expo Go en el celular.
+6- Escanear el código QR.
+7- La aplicación se abrirá automáticamente en el dispositivo.
+
+Uso de la aplicación:
+
+Agregar un producto
+
+1- Escribir el nombre del producto en el campo de texto.
+2- Presionar el botón Agregar o la tecla Enter.
+3- El producto aparecerá en la lista.
+
+Marcar como comprado
+1- Tocar un producto de la lista
+2- El producto se marcará como completado
+
+Desmarcar producto
+1- Tocar nuevamente un producto marcado.
+2- Volverá a estado pendiente.
+
+Eliminar producto
+1- Mantener presionado un producto
+2- Luego el producto será eliminado de la lista
+
+Solución de problemas:
+
+No aparece el QR:
+
+Verificar que el comando 'bun start' esté corriendo.
+
+Expo Go no conecta:
+
+Asegurarse de estar en la misma red WiFi.
+
+Error al iniciar:
+
+Ejecutar: 'bun install'
