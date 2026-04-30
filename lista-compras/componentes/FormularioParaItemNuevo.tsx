@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, TextInput, Pressable, Text, StyleSheet } from "react-native";
+import { View, TextInput, Pressable, Text, StyleSheet, Keyboard } from "react-native";
 
 type Props = {
   alCompletarFormulario: (nombre: string) => void;
@@ -12,10 +12,13 @@ export default function FormularioParaItemNuevo({
 
   const manejarEnvio = () => {
     const limpio = texto.trim();
-    if (limpio) {
-      alCompletarFormulario(limpio);
-      setTexto("");
-    }
+    console.log("ENVIANDO:", limpio);
+
+    if (!limpio) return;
+
+    alCompletarFormulario(limpio);
+    setTexto("");
+    Keyboard.dismiss();
   };
 
   return (
@@ -25,8 +28,9 @@ export default function FormularioParaItemNuevo({
         onChangeText={setTexto}
         placeholder="Agregar producto..."
         style={styles.input}
-        returnKeyType="done"
         onSubmitEditing={manejarEnvio}
+        returnKeyType="done"
+        autoCorrect={false}
       />
       <Pressable style={styles.button} onPress={manejarEnvio}>
         <Text style={styles.buttonText}>Agregar</Text>
@@ -36,7 +40,11 @@ export default function FormularioParaItemNuevo({
 }
 
 const styles = StyleSheet.create({
-  container: { flexDirection: "row", gap: 8 },
+  container: {
+    flexDirection: "row",
+    gap: 8,
+    marginBottom: 10,
+  },
   input: {
     flex: 1,
     borderWidth: 1,
@@ -51,5 +59,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     justifyContent: "center",
   },
-  buttonText: { color: "#fff", fontWeight: "600" },
+  buttonText: {
+    color: "#fff",
+    fontWeight: "600",
+  },
 });
