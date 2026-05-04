@@ -1,5 +1,5 @@
 import React from "react";
-import { Pressable, Text, StyleSheet, View } from "react-native";
+import { Pressable, Text, StyleSheet } from "react-native";
 import { Item } from "../types/Item";
 
 type Props = {
@@ -13,48 +13,45 @@ export default function ItemIndividual({
   alPresionar,
   alMantenerPresion,
 }: Props) {
-  if (!item) return null;
-
   return (
     <Pressable
-      style={styles.fila}
       onPress={alPresionar}
       onLongPress={alMantenerPresion}
-      android_ripple={{ color: "#eee" }}
+      style={styles.row}
     >
-      <Text style={[styles.texto, item.completado && styles.tachado]}>
+      <Text style={[styles.rowText, item.completado && styles.done]}>
         {item.nombre}
       </Text>
-      <View
-        style={[styles.circulo, item.completado ? styles.hecho : styles.pendiente]}
+      <Text
+        style={[
+          styles.pill,
+          item.completado ? styles.pillDone : styles.pillTodo,
+        ]}
       >
-        {item.completado && <Text style={styles.check}>✓</Text>}
-      </View>
+        {item.completado ? "✔" : "•"}
+      </Text>
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
-  fila: {
+  row: {
     flexDirection: "row",
-    padding: 15,
+    paddingVertical: 12,
+    paddingHorizontal: 8,
+    alignItems: "center",
     justifyContent: "space-between",
-    alignItems: "center",
-    borderBottomWidth: 1,
-    borderBottomColor: "#eee",
-    backgroundColor: "white",
   },
-  texto: { fontSize: 16, color: "#333" },
-  tachado: { textDecorationLine: "line-through", color: "#aaa" },
-  circulo: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    borderWidth: 2,
-    justifyContent: "center",
-    alignItems: "center",
+  rowText: { fontSize: 16 },
+  done: { textDecorationLine: "line-through", color: "#999" },
+  pill: {
+    minWidth: 28,
+    height: 28,
+    borderRadius: 14,
+    textAlign: "center",
+    textAlignVertical: "center",
+    fontWeight: "700",
   },
-  pendiente: { borderColor: "#ddd" },
-  hecho: { borderColor: "#2ecc71", backgroundColor: "#2ecc71" },
-  check: { color: "white", fontWeight: "bold", fontSize: 14 },
+  pillTodo: { backgroundColor: "#eee", color: "#666" },
+  pillDone: { backgroundColor: "#2ecc71", color: "#fff" },
 });

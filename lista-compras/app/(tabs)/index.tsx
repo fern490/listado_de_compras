@@ -3,22 +3,19 @@ import Contenedor from "../../componentes/Contenedor";
 import TituloDeLaPagina from "../../componentes/TituloDeLaPagina";
 import FormularioParaItemNuevo from "../../componentes/FormularioParaItemNuevo";
 import ListaDeCompras from "../../componentes/ListaDeCompras";
-import usarItemsDeCompra from "../../hooks/usarItemsDeCompra";
+import useItemsDeCompra from "../../hooks/useItemsDeCompra";
 
-export default function App() {
-  const { items, eliminarItem, cambiarItem, agregarItem } = usarItemsDeCompra();
+export default function ListaDeComprasScreen() {
+  const { items, agregarItem, cambiarItem, eliminarItem } = useItemsDeCompra();
 
   return (
     <Contenedor>
-      {}
       <TituloDeLaPagina />
-
       <FormularioParaItemNuevo alCompletarFormulario={agregarItem} />
-
       <ListaDeCompras
         items={items}
-        alPresionarSobreUnItem={cambiarItem}
-        alMantenerPresionSobreUnItem={eliminarItem}
+        alPresionarItem={cambiarItem}
+        alEliminarItem={eliminarItem}
       />
     </Contenedor>
   );

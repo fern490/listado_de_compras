@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { View, TextInput, Pressable, Text, StyleSheet, Keyboard } from "react-native";
+import {
+  View,
+  TextInput,
+  Pressable,
+  Text,
+  StyleSheet,
+  Keyboard,
+} from "react-native";
 
 type Props = {
   alCompletarFormulario: (nombre: string) => void;
@@ -12,6 +19,7 @@ export default function FormularioParaItemNuevo({
 
   const manejarEnvio = () => {
     const limpio = texto.trim();
+
     console.log("ENVIANDO:", limpio);
 
     if (!limpio) return;
@@ -30,8 +38,8 @@ export default function FormularioParaItemNuevo({
         style={styles.input}
         onSubmitEditing={manejarEnvio}
         returnKeyType="done"
-        autoCorrect={false}
       />
+
       <Pressable style={styles.button} onPress={manejarEnvio}>
         <Text style={styles.buttonText}>Agregar</Text>
       </Pressable>
